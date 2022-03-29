@@ -35,7 +35,7 @@ public class Parque implements IParque {
 		// TODO
 
 		// TODO
-
+ 
 	}
 
 	//
@@ -66,19 +66,24 @@ public class Parque implements IParque {
 	protected void checkInvariante() {
 		assert sumarContadoresPuerta() == contadorPersonasTotales
 				: "INV: La suma de contadores de las puertas debe ser igual al valor del contador del parte";
-		// TODO
-		// TODO
+		assert contadorPersonasTotales < PERSONASMAXIMAS
+				: "El numero de personas en el parque no puede exceder el numero de personas maximas";
+		assert contadorPersonasTotales > 0
+				: "INV: El numero de personas totales en el parque tiene que ser mayor que cero";
+		
 
 	}
 
 	protected void comprobarAntesDeEntrar() { // TODO
-		assert contadorPersonasTotales < PERSONASMAXIMAS
-				: "El numero de personas en el parque no puede exceder el numero de personas maximas";
+		//
+		// TODO
+		//
 	}
 
 	protected void comprobarAntesDeSalir() { // TODO
-		assert contadorPersonasTotales > 0
-				: "INV: El numero de personas totales en el parque tiene que ser mayor que cero";
+		//
+		// TODO
+		//
 	}
 
 }
