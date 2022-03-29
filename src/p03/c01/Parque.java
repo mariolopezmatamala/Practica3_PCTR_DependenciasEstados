@@ -1,5 +1,6 @@
 package src.p03.c01;
 
+import java.awt.ContainerOrderFocusTraversalPolicy;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
@@ -10,24 +11,29 @@ public class Parque implements IParque{
 	private int contadorPersonasTotales;
 	private Hashtable<String, Integer> contadoresPersonasPuerta;
 	
+	private boolean estaVacio;
+	private boolean estaLLeno;
+	
 	
 	public Parque() {	// TODO
 		contadorPersonasTotales = 0;
 		contadoresPersonasPuerta = new Hashtable<String, Integer>();
 		// TODO
+		estaVacio = true;
+		estaLLeno = false;
 	}
 
 
 	@Override
-	public void entrarAlParque(String puerta){		// TODO
+	public synchronized void entrarAlParque(String puerta){		// TODO hecho
 		
 		// Si no hay entradas por esa puerta, inicializamos
 		if (contadoresPersonasPuerta.get(puerta) == null){
 			contadoresPersonasPuerta.put(puerta, 0);
 		}
 		
-		// TODO
-				
+		// TODO falta un try catch o algo asi
+		comprobarAntesDeEntrar();
 		
 		// Aumentamos el contador total y el individual
 		contadorPersonasTotales++;		
@@ -36,17 +42,42 @@ public class Parque implements IParque{
 		// Imprimimos el estado del parque
 		imprimirInfo(puerta, "Entrada");
 		
-		// TODO
+		// TODO hecho
+		estaVacio = false;
 		
-		
-		// TODO
-		
+		// TODO hecho
+		notifyAll();  
+		return;
 	}
 	
 	// 
 	// TODO Método salirDelParque
 	//
-	
+	@Override
+	public synchronized void salirDelParque(String puerta){		// TODO hecho
+		
+		// Si no hay entradas por esa puerta, inicializamos
+		if (contadoresPersonasPuerta.get(puerta) == null){
+			contadoresPersonasPuerta.put(puerta, 0);
+		}
+		
+		// TODO falta un try catch o algo asi
+		comprobarAntesDeSalir();
+		
+		// Aumentamos el contador total y el individual
+		contadorPersonasTotales++;		
+		contadoresPersonasPuerta.put(puerta, contadoresPersonasPuerta.get(puerta)-1);
+		
+		// Imprimimos el estado del parque
+		imprimirInfo(puerta, "Salida");
+		
+		// TODO hecho
+		estaLLeno = false;
+		
+		// TODO hecho
+		notifyAll();
+		return;
+	}
 	
 	private void imprimirInfo (String puerta, String movimiento){
 		System.out.println(movimiento + " por puerta " + puerta);
@@ -77,16 +108,30 @@ public class Parque implements IParque{
 		
 	}
 
-	protected void comprobarAntesDeEntrar(){	// TODO
+	protected void comprobarAntesDeEntrar() throws InterruptedException {	// TODO hecho
 		//
-		// TODO
+		// TODO hecho
 		//
+		if(contadorPersonasTotales == 50) {
+			estaLLeno = true;
+		}
+		
+		while(estaLLeno) {
+			wait();
+		}
 	}
 
-	protected void comprobarAntesDeSalir(){		// TODO
+	protected void comprobarAntesDeSalir() throws InterruptedException {	// TODO hecho
 		//
-		// TODO
+		// TODO hecho
 		//
+		if(contadorPersonasTotales == 0) {
+			estaVacio = true;
+		}
+		
+		while(estaVacio) {
+			wait();
+		}
 	}
 
 
