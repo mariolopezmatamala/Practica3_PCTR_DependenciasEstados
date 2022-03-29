@@ -6,7 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ActividadSalidaPuerta implements Runnable{
-	// TODO
+	// TODO hecho
 	private static final int NUMSALIDAS = 20;
 	private IParque parque;
 	private String puerta;

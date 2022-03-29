@@ -4,6 +4,6 @@ public interface IParque {
 	
 	public abstract void entrarAlParque(String puerta);
 
-	// TODO
+	// TODO hecho
 	public abstract void salirDelParque(String puerta);
 }
