@@ -31,7 +31,12 @@ public class Parque implements IParque {
 		}
 		
 		// TODO falta un try catch o algo asi
-		comprobarAntesDeEntrar();
+		try {
+			comprobarAntesDeEntrar();
+		} catch (InterruptedException e) {
+			
+			e.printStackTrace();
+		}
 		
 		// Aumentamos el contador total y el individual
 		contadorPersonasTotales++;
@@ -61,7 +66,12 @@ public class Parque implements IParque {
 		}
 		
 		// TODO falta un try catch o algo asi
-		comprobarAntesDeSalir();
+		try {
+			comprobarAntesDeSalir();
+		} catch (InterruptedException e) {
+			
+			e.printStackTrace();
+		}
 		
 		// Aumentamos el contador total y el individual
 		contadorPersonasTotales++;		
