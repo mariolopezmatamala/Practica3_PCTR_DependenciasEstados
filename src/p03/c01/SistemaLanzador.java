@@ -3,7 +3,7 @@ package src.p03.c01;
 public class SistemaLanzador {
 	public static void main(String[] args) {
 
-		IParque parque = new Parque(); // TODO
+		final IParque parque = new Parque(); // TODO hecho
 		char letra_puerta = 'A';
 
 		System.out.println("¡Parque abierto!");
@@ -15,11 +15,11 @@ public class SistemaLanzador {
 			// Creación de hilos de entrada
 			ActividadEntradaPuerta entradas = new ActividadEntradaPuerta(puerta, parque);
 			new Thread(entradas).start();
-
+			
+			//TODO hecho
 			ActividadSalidaPuerta salidas = new ActividadSalidaPuerta(puerta, parque);
 			new Thread(salidas).start();
 
-			//TODO hecho
 		}
 	}
 }
